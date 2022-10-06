@@ -15,13 +15,13 @@
       exit();
     }
 
-    if($_SERVER['REQUEST_METHOD']== 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
       if(!empty($_POST['quote']) && !empty($_POST['source'])){
 
 
         //Prepare the value for storing
-        $quote = mysqli_real_escape_string($dbc, trim(strip_tag($_POST['quote'])));
-        $source = mysqli_real_escape_string($dbc, trim(strip_tag($_POST['source'])));
+        $quote = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['quote'])));
+        $source = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['source'])));
 
         //Create favorite value
         if (isset($_POST['favorite'])){
@@ -30,11 +30,12 @@
           $favorite = 0;
         }
 
-        $query = "INSERT INTO quotes (quotes,source,favorite) VALUES ('$quotes', '$source', $favorite)";
+        $query = "INSERT INTO quotes (quote,source,favorite) VALUES ('$quote', '$source', $favorite)";
+        mysqli_query($dbc,$query);
 
-        if (mysqli_affected_rows($dbc) ==1) {
+        if (mysqli_affected_rows($dbc) == 1) {
           //echo out message
-          echo "<p>YOur Quotation has been stored</p>";
+          echo "<p>Your Quotation has been stored</p>";
         }else {
           echo "<p class='error'>Could not store the qutoe because:" . mysqli_error($dbc) . "</p>";
           echo "<p>The query being run was:" . $query . "</p>";
@@ -55,4 +56,4 @@
     <p><input type="submit" name="submit" value="Add this Quote!"></p>
   </form>
 
-<?php include('tempates/footer.php'); ?>
+<?php include('templates/footer.php'); ?>

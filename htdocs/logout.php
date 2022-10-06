@@ -2,8 +2,8 @@
 //This is the logout page. It destroys cookies
 
 //Destroy cookies
-if(isset($_COOKIE['Cohen'])) {
-  setcookie('Cohen', FALSE, time()-300);
+if(isset($_COOKIE['Rebecca'])) {
+  setcookie('Rebecca', FALSE, time()-300);
 }
 
 //Include header

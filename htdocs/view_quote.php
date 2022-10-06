@@ -2,7 +2,7 @@
   //View quotes from the SQLiteDatabase
   include('templates/header.php');
 
-  echo "<h2>View Quotes</p>";
+  echo "<h2>View Quotes</h2>";
 
   //Restrict access to administrators only:
   if (!is_administrator()) {
@@ -27,17 +27,17 @@
       echo "<div><blockquote>{$row['quote']}</blockquote>-{$row['source']}\n";
 
       //Is this a favorite?
-      if ($row['favorite'] == 1) {
+      if ($row['favorite'] == 1){
         echo "<strong>Favorite!</strong>";
       }
 
       //Add administrative link
       echo "<p>Quote Admin: <a href=\"edit_quote.php?id={$row['id']}\">Edit</a>
-      <a href=\"delete_quote.php?id={$row['id']}\">Delete</a></p></div>";
+            <a href=\"delete_quote.php?id={$row['id']}\">Delete</a></p></div>";
     }//While loop End
   }else{//Query did not run
-    echo "<p class = 'error'>Could not retrieve the data because:" . mysqli_error($dbc) . "</p>";
-    echo "<p>The query being run was:" . $query . "</p>";
+    echo "<p class='error'>Could not retrieve the data because: " . mysqli_error($dbc) . "</p>";
+    echo "<p>The query being run was: " . $query . "</p>";
   } //End of query IF
 
   mysqli_close($dbc);

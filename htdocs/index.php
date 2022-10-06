@@ -8,9 +8,9 @@
   include('templates/header.php');
 
   //Define the query
-if (isset($_GET['random'])){
+if(isset($_GET['random'])){
   $query = "SELECT id, quote, source, favorite FROM quotes ORDER BY RAND() DESC LIMIT 1";
-}elseif(isset($_GET['favorite'])) {
+}elseif(isset($_GET['favorite'])){
   $query = "SELECT id, quote, source, favorite FROM quotes WHERE favorite=1 ORDER BY RAND() DESC LIMIT 1";
 }else{
   $query = "SELECT id, quote, source, favorite FROM quotes ORDER BY date_entered DESC LIMIT 1";
@@ -34,11 +34,11 @@ if($result = mysqli_query($dbc, $query)){
   echo "</div>";
 
   //if admin is logged in, show links for the quotes
-  if (is_administrator()){
-    echo "<p>Quote Admin: <a href=\"edit_quote.php?id={$row['id']}\"Edit</a> | <a href=\"delete_quote.php?id={$row['id']}\>Delete</a></p>\n";
+  if(is_administrator()){
+    echo "<p>Quote Admin: <a href=\"edit_quote.php?id={$row['id']}\">Edit</a> | <a href=\"delete_quote.php?id={$row['id']}\">Delete</a></p>\n";
   }
 }else {
-  echo "<p>Could not retrieve the data because: " . mysqli_error($dbc) . "</p>";
+  echo "<p class='error'>Could not retrieve the data because: " . mysqli_error($dbc) . "</p>";
   echo "<p>The query being was: " . $query . "</p>";
 }
 
